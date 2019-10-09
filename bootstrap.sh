@@ -6,3 +6,5 @@ ln -srn dotfiles/.config .config
 curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 pip3 install --user pynvim
 wget -qO- "https://yihui.name/gh/tinytex/tools/install-unx.sh" | sh
+cd ~ && wget -O - "https://www.dropbox.com/download?plat=lnx.x86_64" | tar xzf -
+dropboxd
