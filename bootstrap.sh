@@ -20,9 +20,6 @@ apt-get install -qq \
 	ack-grep \
 	-y --no-install-recommends
 
-git config --global user.name "Rylee Lyman"
-git config --gloabl user.email "rylee.lyman@tufts.edu"
-
 # install neovim
 if ! [ -x "$(command -v nvim)" ]; then
 	echo "==> Installing neovim ..."
@@ -36,23 +33,19 @@ if ! [ -x "$(command -v nvim)" ]; then
 fi
 
 if ! [ -x "$(command --version ctags)" ]; then
-	git clone https://github.com/universal-ctags/ctags.git
-	cd ctags
-	./autogen.sh
-	./configure --prefix=$HOME
-	make
-	make install
+	snap install universal-ctags
 fi
-
-cp -rn dotfiles/.config .config
 
 if [ ! -f "${HOME}/.TinyTex" ]; then
 	echo "==> Installing TinyTex ..."
 	wget -qO- "https://yihui.name/gh/tinytex/tools/install-unx.sh" | sh
-	export $PATH=$PATH:root/bin
+	export PATH=$PATH:root/bin
 	tlmgr install pgf
 	tlmgr install cleveref
 	tlmgr install mathtools
+	tlmgr install xcolor
+	tlmgr install tikz-cd
+	tlmgr path add
 fi
 
 if [ ! -f "${HOME}/Dropbox" ]; then
