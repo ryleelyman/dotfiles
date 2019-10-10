@@ -39,7 +39,7 @@ fi
 if [ ! -f "${HOME}/.TinyTex" ]; then
 	echo "==> Installing TinyTex ..."
 	wget -qO- "https://yihui.name/gh/tinytex/tools/install-unx.sh" | sh
-	export PATH="$PATH:root/bin"
+	export PATH=$PATH:root/bin
 	tlmgr install pgf
 	tlmgr install cleveref
 	tlmgr install mathtools
