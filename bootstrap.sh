@@ -30,6 +30,8 @@ if ! [ -x "$(command -v nvim)" ]; then
 	chmod +x nvim
 	mv nvim /usr/bin
 	curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+	pip3 install setuptools
+	pip3 install wheel
 	pip3 install --user pynvim
 fi
 
@@ -42,14 +44,18 @@ if ! [ -x "$(command --version ctags)" ]; then
 	make install
 fi
 
-ln -srn dotfiles/.config .config
+cp -rn dotfiles/.config .config
 
 if [ ! -f "${HOME}/.TinyTex" ]; then
 	echo "==> Installing TinyTex ..."
 	wget -qO- "https://yihui.name/gh/tinytex/tools/install-unx.sh" | sh
+	export $PATH=$PATH:root/bin
+	tlmgr install pgf
+	tlmgr install cleveref
+	tlmgr install mathtools
 fi
 
 if [ ! -f "${HOME}/Dropbox" ]; then
-	wget -O - "https://www.dropbox.com/download?plat=lnx.x86_64" | tar xzf -
+	cd ~ && wget -O - "https://www.dropbox.com/download?plat=lnx.x86_64" | tar xzf -
 	dropboxd
 fi
