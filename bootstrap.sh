@@ -48,5 +48,5 @@ fi
 
 if [ ! -f "${HOME}/Dropbox" ]; then
 	cd ~ && wget -O - "https://www.dropbox.com/download?plat=lnx.x86_64" | tar xzf -
-	dropboxd
+	.dropbox-dist/dropboxd
 fi
