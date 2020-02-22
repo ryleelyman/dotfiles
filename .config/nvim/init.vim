@@ -1,10 +1,10 @@
 " Plugins
 call plug#begin('~/.local/share/nvim/plugged')
 Plug 'tpope/vim-surround'
-Plug 'ludovicchabant/vim-gutentags'
+" Plug 'ludovicchabant/vim-gutentags'
 Plug 'vim-airline/vim-airline'
 Plug 'lervag/vimtex'
-Plug 'KeitaNakamura/tex-conceal.vim', {'for': 'tex'} 
+Plug 'ryleelyman/tex-conceal.vim', {'for': 'tex'} 
 Plug 'tidalcycles/vim-tidal'
 Plug 'w0rp/ale'
 Plug 'shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins'}
@@ -16,6 +16,7 @@ call plug#end()
 
 set relativenumber
 set number
+set colorcolumn=80
 
 " Vimwiki Options
 " Use Markdown instead of Wiki formatting
@@ -55,9 +56,42 @@ endif
 let g:vimtex_fold_manual = 1
 let g:tex_conceal = "abdgm" 
 set conceallevel=2
+" Improving Vimtex imaps
+let g:vimtex_imaps_disabled = ['0']
+call vimtex#imaps#add_map({
+ \ 'lhs' : ':',
+ \ 'rhs' : '\colon',
+ \})
+call vimtex#imaps#add_map({
+ \ 'lhs' : '~',
+ \ 'rhs' : '\tilde',
+ \})
+call vimtex#imaps#add_map({
+ \ 'lhs' : '-',
+ \ 'rhs' : '\bar',
+ \})
+call vimtex#imaps#add_map({
+ \ 'lhs' : '0',
+ \ 'rhs' : '\varnothing',
+ \})
+call vimtex#imaps#add_map({
+ \ 'lhs' : '#',
+ \ 'rhs' : '\sharp',
+ \})
+call vimtex#imaps#add_map({
+ \ 'lhs' : 'mb',
+ \ 'rhs' : '\mathbb',
+ \})
+call vimtex#imaps#add_map({
+ \ 'lhs' : 'ms',
+ \ 'rhs' : '\mathscr',
+ \})
+call vimtex#imaps#add_map({
+ \ 'lhs' : 'mc',
+ \ 'rhs' : '\mathcal',
+ \})
 
 " Mutt Options
-augroup filetypedetect
-  " Mail
+augroup filetypedetect  " Mail
   autocmd BufRead,BufNewFile *mutt-*              setfiletype mail
 augroup END

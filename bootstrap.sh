@@ -40,12 +40,10 @@ if [ ! -f "${HOME}/.TinyTex" ]; then
 	echo "==> Installing TinyTex ..."
 	wget -qO- "https://yihui.name/gh/tinytex/tools/install-unx.sh" | sh
 	export PATH=$PATH:root/bin
-	tlmgr install pgf
-	tlmgr install cleveref
-	tlmgr install mathtools
-	tlmgr install xcolor
-	tlmgr install tikz-cd
+	tlmgr install pgf cleveref mathtools xcolor tikz-cd epstopdf-pkg enumitem
+	tlmgr install transparent pdfpages import rsfs jknapltx pdflscape biblatex
 	tlmgr path add
+	fmtutil-sys -all
 fi
 
 if [ ! -f "${HOME}/Dropbox" ]; then
