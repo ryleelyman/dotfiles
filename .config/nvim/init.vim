@@ -16,7 +16,7 @@ call plug#end()
 
 set relativenumber
 set number
-set colorcolumn=80
+call matchadd('ColorColumn', '\%81v', 100)
 
 " Vimwiki Options
 " Use Markdown instead of Wiki formatting
