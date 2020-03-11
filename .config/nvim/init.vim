@@ -1,7 +1,10 @@
-" Plugins
+let uname = substitute(system('uname'), '\n', '', '')
+"Plugins
 call plug#begin('~/.local/share/nvim/plugged')
 Plug 'tpope/vim-surround'
-Plug 'ludovicchabant/vim-gutentags'
+if uname == 'Darwin'
+	Plug 'ludovicchabant/vim-gutentags'
+endif
 Plug 'vim-airline/vim-airline'
 Plug 'lervag/vimtex'
 Plug 'KeitaNakamura/tex-conceal.vim', {'for': 'tex'} 
@@ -11,7 +14,7 @@ Plug 'shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins'}
 Plug 'shougo/neosnippet'
 Plug 'shougo/neosnippet-snippets'
 Plug 'vimwiki/vimwiki'
-Plug '/tpope/vim-liquid'
+Plug 'tpope/vim-liquid'
 call plug#end()
 
 set relativenumber
