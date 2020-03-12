@@ -9,16 +9,15 @@ if [ "$UPGRADE_PACKAGES}" != "none" ]; then
 	add-apt-repository ppa:keithw/mosh-server -y
 	apt-get update
 	apt-get upgrade -y
+	apt-get install -qq \
+		git \
+		mosh \
+		python3-pip \
+		fuse \
+		libfuse2 \
+		ack-grep \
+		-y --no-install-recommends
 fi
-
-apt-get install -qq \
-	git \
-	mosh \
-	python3-pip \
-	fuse \
-	libfuse2 \
-	ack-grep \
-	-y --no-install-recommends
 
 # install neovim
 if ! [ -x "$(command -v nvim)" ]; then
@@ -32,11 +31,7 @@ if ! [ -x "$(command -v nvim)" ]; then
 	pip3 install --user pynvim
 fi
 
-if ! [ -x "$(command --version ctags)" ]; then
-	snap install universal-ctags
-fi
-
-if [ ! -f "${HOME}/.TinyTex" ]; then
+if ! [ -f "${HOME}/.TinyTex" ]; then
 	echo "==> Installing TinyTex ..."
 	wget -qO- "https://yihui.name/gh/tinytex/tools/install-unx.sh" | sh
 	export PATH=$PATH:root/bin
@@ -46,7 +41,7 @@ if [ ! -f "${HOME}/.TinyTex" ]; then
 	fmtutil-sys -all
 fi
 
-if [ ! -f "${HOME}/Dropbox" ]; then
+if ! [ -f "${HOME}/Dropbox" ]; then
 	cd ~ && wget -O - "https://www.dropbox.com/download?plat=lnx.x86_64" | tar xzf -
 	.dropbox-dist/dropboxd
 fi
