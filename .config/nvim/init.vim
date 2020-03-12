@@ -1,7 +1,7 @@
 " Plugins
 call plug#begin('~/.local/share/nvim/plugged')
 Plug 'tpope/vim-surround'
-" Plug 'ludovicchabant/vim-gutentags'
+Plug 'ludovicchabant/vim-gutentags'
 Plug 'vim-airline/vim-airline'
 Plug 'lervag/vimtex'
 Plug 'ryleelyman/tex-conceal.vim', {'for': 'tex'} 
@@ -11,9 +11,11 @@ Plug 'shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins'}
 Plug 'shougo/neosnippet'
 Plug 'shougo/neosnippet-snippets'
 Plug 'vimwiki/vimwiki'
-Plug '/tpope/vim-liquid'
+Plug 'tpope/vim-liquid'
 call plug#end()
 
+set shiftwidth=4
+set tabstop=4
 set relativenumber
 set number
 call matchadd('ColorColumn', '\%81v', 100)
@@ -25,7 +27,7 @@ let g:vimwiki_folding = 'list'
 let g:vimwiki_list = [{'path': '~/vimwiki/', 'syntax': 'markdown'}]
 :map <Leader><Space> <Plug>VimwikiToggleListItem
 
-" maplocalleader is mostly used in vim-tex
+" maplocalleader is mostly used in Vimtex
 let maplocalleader="\\"
 imap ,/ </<C-X><C-O>
 " Italics?
@@ -33,13 +35,12 @@ let &t_ZH="\e[3m"
 let &t_ZR="\e[23m"
 
 " Deoplete Options
+let g:python3_host_prog = '/usr/local/bin/python3'
 let g:deoplete#enable_at_startup = 1
 let g:deoplete#options#auto_complete_delay = 1000
 call deoplete#custom#var('omni', 'input_patterns', {
 			\ 'tex': g:vimtex#re#deoplete
 			\})
-inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
-inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 
 " Hide default mode---Airline's is prettier.
 set noshowmode
